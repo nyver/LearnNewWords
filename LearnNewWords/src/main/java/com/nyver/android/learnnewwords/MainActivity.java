@@ -13,13 +13,16 @@ import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.TextView;
 
-import com.nyver.android.learnnewwords.fragments.NavigationDrawerFragment;
+import com.nyver.android.learnnewwords.fragment.DictionariesFragment;
+import com.nyver.android.learnnewwords.fragment.NavigationDrawerFragment;
 
 import roboguice.activity.RoboActionBarActivity;
 import roboguice.inject.InjectFragment;
 
 public class MainActivity extends RoboActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+
+    private static final int SECTION_DICTIONARIES = 0;
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -48,9 +51,17 @@ public class MainActivity extends RoboActionBarActivity
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
-                .commit();
+        switch (position) {
+            case SECTION_DICTIONARIES:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, new DictionariesFragment())
+                        .commit();
+                break;
+            default:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
+                        .commit();
+        }
     }
 
     public void onSectionAttached(int number) {

@@ -1,9 +1,8 @@
-package com.nyver.android.learnnewwords.fragments;
+package com.nyver.android.learnnewwords.fragment;
 
 import android.support.v7.app.ActionBarActivity;;
 import android.app.Activity;
 import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -25,7 +24,6 @@ import android.widget.Toast;
 import com.nyver.android.learnnewwords.R;
 
 import roboguice.fragment.RoboFragment;
-import roboguice.inject.InjectView;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
