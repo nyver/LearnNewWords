@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.google.inject.Inject;
 import com.nyver.android.learnnewwords.R;
 import com.nyver.android.learnnewwords.model.Dictionary;
 
@@ -32,7 +31,7 @@ public class DictionaryArrayAdapter extends ArrayAdapter<Dictionary>
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater =  (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View rowView = inflater.inflate(R.layout.dictionaries_list_line, parent, false);
+        View rowView = inflater.inflate(R.layout.fragment_dictionaries_list_line, parent, false);
         TextView nameTextView = (TextView) rowView.findViewById(R.id.dictionaryName);
 
         Dictionary dictionary = objects[position];
