@@ -14,7 +14,7 @@ repositories {
 
 android {
     compileSdkVersion 19
-    buildToolsVersion "19.0.0"
+    buildToolsVersion '19.0.0'
 
     defaultConfig {
         minSdkVersion 7
@@ -28,8 +28,8 @@ android {
 }
 
 dependencies {
-	compile 'com.android.support:support-v4:19.0.0'
-	compile 'com.android.support:gridlayout-v7:19.0.0'
-	compile 'com.android.support:appcompat-v7:19.0.0'
-    compile 'org.roboguice:roboguice:2.0'
+    compile 'com.android.support:support-v4:19.0.0'
+    compile 'com.android.support:gridlayout-v7:19.0.0'
+    compile 'com.android.support:appcompat-v7:19.0.0'
+    compile fileTree(dir: 'lib', include: '*.jar')
 }

@@ -1,4 +1,4 @@
-package com.nyver.android.learnnewwords;
+package com.nyver.android.learnnewwords.fragments;
 
 import android.support.v7.app.ActionBarActivity;;
 import android.app.Activity;
@@ -22,12 +22,17 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.nyver.android.learnnewwords.R;
+
+import roboguice.fragment.RoboFragment;
+import roboguice.inject.InjectView;
+
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
  * See the <a href="https://developer.android.com/design/patterns/navigation-drawer.html#Interaction">
  * design guidelines</a> for a complete explanation of the behaviors implemented here.
  */
-public class NavigationDrawerFragment extends Fragment {
+public class NavigationDrawerFragment extends RoboFragment {
 
     /**
      * Remember the position of the selected item.
