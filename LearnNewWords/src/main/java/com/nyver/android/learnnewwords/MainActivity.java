@@ -24,8 +24,7 @@ public class MainActivity extends RoboActionBarActivity
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
-    private @InjectFragment(R.id.navigation_drawer)
-    NavigationDrawerFragment mNavigationDrawerFragment;
+    private @InjectFragment(R.id.navigation_drawer)  NavigationDrawerFragment mNavigationDrawerFragment;
 
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
