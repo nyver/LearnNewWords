@@ -32,10 +32,14 @@ public class DictionaryArrayAdapter extends ArrayAdapter<Dictionary>
         LayoutInflater inflater =  (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View rowView = inflater.inflate(R.layout.fragment_dictionaries_list_line, parent, false);
-        TextView nameTextView = (TextView) rowView.findViewById(R.id.dictionaryName);
 
         Dictionary dictionary = objects[position];
+
+        TextView nameTextView = (TextView) rowView.findViewById(R.id.dictionaryName);
         nameTextView.setText(dictionary.getName());
+
+        TextView descriptionTextView = (TextView) rowView.findViewById(R.id.dictionaryDescription);
+        descriptionTextView.setText(dictionary.getDescription());
 
         return rowView;
     }

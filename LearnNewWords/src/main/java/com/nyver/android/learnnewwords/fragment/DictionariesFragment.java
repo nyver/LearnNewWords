@@ -9,6 +9,8 @@ import android.widget.ListView;
 import com.nyver.android.learnnewwords.R;
 import com.nyver.android.learnnewwords.adapter.DictionaryArrayAdapter;
 import com.nyver.android.learnnewwords.model.Dictionary;
+import com.nyver.android.learnnewwords.model.DictionaryRepository;
+import com.nyver.android.learnnewwords.model.Repository;
 
 /**
  * Dictionaries fragment
@@ -18,20 +20,28 @@ public class DictionariesFragment extends ProgressRoboFragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        Dictionary dictionary = new Dictionary("name", "description");
+
+        final View view = inflater.inflate(R.layout.fragment_dictionaries, container, false);
 
         setContentLoading(true);
 
-        DictionaryArrayAdapter adapter = new DictionaryArrayAdapter(
-                this.getActivity(),
-                R.layout.fragment_dictionaries_list_line,
-                new Dictionary[] {dictionary, dictionary, dictionary, dictionary, dictionary, dictionary, dictionary, dictionary}
-        );
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                DictionaryRepository repository = new DictionaryRepository();
 
-        View view = inflater.inflate(R.layout.fragment_dictionaries, container, false);
+                DictionaryArrayAdapter adapter = new DictionaryArrayAdapter(
+                        getActivity(),
+                        R.layout.fragment_dictionaries_list_line,
+                        repository.get(getActivity().getApplicationContext())
+                );
 
-        ListView dictionariesListView = (ListView) view.findViewById(R.id.listView);
-        dictionariesListView.setAdapter(adapter);
+                ListView dictionariesListView = (ListView) view.findViewById(R.id.listView);
+                dictionariesListView.setAdapter(adapter);
+
+                setContentLoading(false);
+            }
+        });
 
         return view;
     }

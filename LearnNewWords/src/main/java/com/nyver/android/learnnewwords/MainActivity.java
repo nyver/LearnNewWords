@@ -12,9 +12,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.nyver.android.learnnewwords.exception.DictionaryExternalStorageException;
 import com.nyver.android.learnnewwords.fragment.DictionariesFragment;
 import com.nyver.android.learnnewwords.fragment.NavigationDrawerFragment;
+import com.nyver.android.learnnewwords.util.DictionaryExternalStorage;
 
 import roboguice.activity.RoboActionBarActivity;
 import roboguice.inject.InjectFragment;
@@ -36,6 +39,14 @@ public class MainActivity extends RoboActionBarActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        try {
+            DictionaryExternalStorage.createIfNotExists(this);
+        } catch (DictionaryExternalStorageException e) {
+            e.printStackTrace();
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 

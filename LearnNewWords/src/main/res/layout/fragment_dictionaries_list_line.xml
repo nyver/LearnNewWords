@@ -23,7 +23,6 @@ android:padding="6dip" >
     android:layout_alignParentRight="true"
     android:layout_toRightOf="@id/dictionaryIcon"
     android:ellipsize="marquee"
-    android:singleLine="true"
     android:text="Description"
     android:textSize="12sp" />
 
