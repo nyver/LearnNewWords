@@ -2,7 +2,6 @@ package com.nyver.android.learnnewwords.model;
 
 import android.content.Context;
 
-import com.google.inject.Inject;
 import com.nyver.android.learnnewwords.util.DictionaryExternalStorage;
 
 import java.io.File;

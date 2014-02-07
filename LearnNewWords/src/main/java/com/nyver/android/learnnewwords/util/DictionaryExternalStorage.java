@@ -1,12 +1,6 @@
 package com.nyver.android.learnnewwords.util;
 
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.content.res.AssetManager;
-import android.os.Build;
-import android.os.Environment;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.nyver.android.learnnewwords.R;
 import com.nyver.android.learnnewwords.exception.DictionaryExternalStorageException;

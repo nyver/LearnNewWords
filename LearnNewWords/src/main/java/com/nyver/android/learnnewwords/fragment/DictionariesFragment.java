@@ -6,17 +6,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.google.inject.Inject;
 import com.nyver.android.learnnewwords.R;
 import com.nyver.android.learnnewwords.adapter.DictionaryArrayAdapter;
-import com.nyver.android.learnnewwords.model.Dictionary;
 import com.nyver.android.learnnewwords.model.DictionaryRepository;
-import com.nyver.android.learnnewwords.model.Repository;
 
 /**
  * Dictionaries fragment
  */
 public class DictionariesFragment extends ProgressRoboFragment
 {
+    @Inject
+    DictionaryRepository repository;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
@@ -28,7 +30,6 @@ public class DictionariesFragment extends ProgressRoboFragment
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                DictionaryRepository repository = new DictionaryRepository();
 
                 DictionaryArrayAdapter adapter = new DictionaryArrayAdapter(
                         getActivity(),
