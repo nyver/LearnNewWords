@@ -5,10 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
+import com.nyver.android.learnnewwords.MainActivity;
+import com.nyver.android.learnnewwords.MyActivity;
 import com.nyver.android.learnnewwords.R;
 import com.nyver.android.learnnewwords.model.Dictionary;
+import com.nyver.android.learnnewwords.model.Settings;
 
 /**
  * Class for fetch dictionaries
@@ -40,6 +44,14 @@ public class DictionaryArrayAdapter extends ArrayAdapter<Dictionary>
 
         TextView descriptionTextView = (TextView) rowView.findViewById(R.id.dictionaryDescription);
         descriptionTextView.setText(dictionary.getDescription());
+
+        RadioButton radioButton = (RadioButton) rowView.findViewById(R.id.dictionaryRadioButton);
+        if (dictionary.getName().equals(((MyActivity) context).getSettings().getCurrentDictionary())) {
+            ((MainActivity) context).setDictionaryListRadioButton(radioButton);
+            radioButton.setChecked(true);
+        } else {
+            radioButton.setChecked(false);
+        }
 
         return rowView;
     }

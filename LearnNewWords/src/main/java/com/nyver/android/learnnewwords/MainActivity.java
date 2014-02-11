@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,11 +20,9 @@ import com.nyver.android.learnnewwords.fragment.DictionariesFragment;
 import com.nyver.android.learnnewwords.fragment.NavigationDrawerFragment;
 import com.nyver.android.learnnewwords.util.DictionaryExternalStorage;
 
-import roboguice.activity.RoboActionBarActivity;
 import roboguice.inject.InjectFragment;
 
-public class MainActivity extends RoboActionBarActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+public class MainActivity extends MyActivity {
 
     private static final int SECTION_DICTIONARIES = 0;
 
@@ -37,8 +36,14 @@ public class MainActivity extends RoboActionBarActivity
      */
     private CharSequence mTitle;
 
+
+    private RadioButton dictionaryListRadioButton = null;
+
+    private int dictionaryListIndex = -1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
         try {
             DictionaryExternalStorage.createIfNotExists(this);
@@ -47,7 +52,6 @@ public class MainActivity extends RoboActionBarActivity
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
 
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         mTitle = getTitle();
@@ -161,6 +165,42 @@ public class MainActivity extends RoboActionBarActivity
             super.onAttach(activity);
             ((MainActivity) activity).onSectionAttached(
                     getArguments().getInt(ARG_SECTION_NUMBER));
+        }
+    }
+
+    /**
+     * Set dictionary list radio button
+     *
+     * @param radioButton
+     */
+    public void setDictionaryListRadioButton(RadioButton radioButton) {
+        dictionaryListRadioButton = radioButton;
+    }
+
+    /**
+     * Dictionary radio button listener
+     *
+     * @param v
+     */
+    public void onDictionaryRadioButtonClick(View v)
+    {
+        View view = ((View) v.getParent());
+
+        if (dictionaryListRadioButton != null) {
+            dictionaryListRadioButton.setChecked(false);
+        }
+
+        getSettings().setCurrentDictionary(((TextView) view.findViewById(R.id.dictionaryName)).getText().toString());
+
+        dictionaryListRadioButton = (RadioButton) v;
+
+        dictionaryListRadioButton.setChecked(true);
+
+        if (dictionaryListRadioButton.isChecked()) {
+            dictionaryListIndex = ((ViewGroup) view.getParent()).indexOfChild(view);
+        } else {
+            dictionaryListRadioButton = null;
+            dictionaryListIndex = -1;
         }
     }
 
